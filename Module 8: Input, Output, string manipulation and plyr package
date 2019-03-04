@@ -1,0 +1,20 @@
+# install the appropriate packages for this assignment
+install.packages("plyr")
+library(plyr)
+
+# select a CSV file that can will read the student data
+students <- read.table(file.choose(), header=T, sep=",")
+
+# alter the list by student sex with individual Grade means per gender
+studentsAverage <- ddply(students, "Sex", transform, Grade.Average=mean(Grade))
+sex = Student$Sex
+mean(Sex)
+
+# write new set of data for a standard file
+write.table(studentsAverage, "Student Average")
+
+# filter data where it only includes students with letter "i" in their name
+i_students <- subset(students, grepl("i", students$Name, ignore.case=T))
+
+# convert the data set to a CSV file
+write.table(i_students, "DataSet_Subset.csv", sep=",")
